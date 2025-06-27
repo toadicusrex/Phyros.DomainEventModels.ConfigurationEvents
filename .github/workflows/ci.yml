@@ -18,27 +18,50 @@ name: ci
 
 on: [push, workflow_dispatch, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
   ubuntu-latest:
     name: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: Get version from GitVersion
+        id: gitversion
+        run: |
+          dotnet tool install --global GitVersion.Tool
+          dotnet gitversion /output json > gitversion.json
+          echo "version=$(jq -r .SemVer gitversion.json)" >> $GITHUB_OUTPUT
       - name: 'Run: Publish'
-        run: ./build.cmd Publish
+        run: ./build.cmd Publish --host GitHubActions
+        env:
+          PACKAGES_API_KEY: ${{ secrets.PACKAGES_API_KEY }}
+          ReadPackagesToken: ${{ secrets.READ_PACKAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITVERSION_NUGET_VERSION: ${{ steps.gitversion.outputs.version }}
+      - name: 'Publish: output'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: |
+            artifacts/*.nupkg
+            artifacts/*.snupkg
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag v${{ steps.gitversion.outputs.version }}
+          git push origin v${{ steps.gitversion.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'Publish: output'
-        uses: actions/upload-artifact@v3
-        with:
-          name: output
-          path: output
