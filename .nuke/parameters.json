@@ -1,4 +1,4 @@
 {
-  "$schema": "./build.schema.json",
-  "Solution": "src/Phyros.DomainEvents.Models.sln"
+  "$schema": "build.schema.json",
+  "Solution": "src/Phyros.DomainEventModels.ConfigurationEvents.sln"
 }
