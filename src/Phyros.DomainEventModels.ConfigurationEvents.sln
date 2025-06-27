@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{6AD026BD-0EA5-4CEF-82B5-FB71E85CBE87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\ci.yml = ..\.github\workflows\ci.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phyros.DomainEventModels.ConfigurationEvents", "Phyros.DomainEventModels.ConfigurationEvents\Phyros.DomainEventModels.ConfigurationEvents.csproj", "{AD4DDBB7-9158-463D-6E70-8051CA701C55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AD026BD-0EA5-4CEF-82B5-FB71E85CBE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD026BD-0EA5-4CEF-82B5-FB71E85CBE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4DDBB7-9158-463D-6E70-8051CA701C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4DDBB7-9158-463D-6E70-8051CA701C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4DDBB7-9158-463D-6E70-8051CA701C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4DDBB7-9158-463D-6E70-8051CA701C55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91206A62-0DDC-4507-8331-80FB9F19267B}
+	EndGlobalSection
+EndGlobal
