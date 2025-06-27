@@ -50,7 +50,6 @@ jobs:
         run: ./build.cmd Publish --host GitHubActions
         env:
           PACKAGES_API_KEY: ${{ secrets.PACKAGES_API_KEY }}
-          ReadPackagesToken: ${{ secrets.READ_PACKAGES_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITVERSION_NUGET_VERSION: ${{ steps.gitversion.outputs.version }}
       - name: 'Publish: output'
